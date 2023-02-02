@@ -1,0 +1,54 @@
+###
+### A complete description of a Prefect Deployment for flow 'etl-gcs-to-bq'
+###
+name: week2_homework_to_gcs
+description: Main ETL flow to load data from GCP bucket storage into Big Query
+version: 7ac25f762ba787585196af7cf66afabf
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+tags: []
+parameters: {}
+schedule: null
+infra_overrides: {}
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  block_type_slug: process
+  _block_type_slug: process
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: etl-gcs-to-bq
+manifest_path: null
+storage: null
+path: /home/jagadish/j-datazoomcamp
+entrypoint: week_2/etl_gcs_to_bq.py:etl_gcs_to_bq
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties:
+    months:
+      title: months
+      default:
+      - 2
+      - 3
+      position: 0
+      type: array
+      items:
+        type: integer
+    year:
+      title: year
+      default: 2019
+      position: 1
+    color:
+      title: color
+      default: yellow
+      position: 2
+  required: null
+  definitions: null
