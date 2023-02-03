@@ -8,7 +8,7 @@ How many rows does that dataset have?
 
 Answer: 447770
 
-Reason: code change , we can refer etl_web_to_gcs.py file in week_2 folder in this repository.
+Reason: code change , we can refer [etl_web_to_gcs.py](week_2/etl_web_to_gcs) file in week_2 folder in this repository.
 
 -------------------------------------------------------------------
 
@@ -48,7 +48,7 @@ Run your deployment to append this data to your BiqQuery table. How many rows di
 
 Answer: 14,851,920
 
-Reason: updated the etl_gcs_to_bq file in this repository.
+Reason: updated the [etl_gcs_to_bq](week_2/etl_gcs_to_bq) file in this repository.
 
 ----------------------------------------------------------------------------------
 
@@ -74,4 +74,10 @@ Reason:
 3. `prefect deployment apply etl_web_to_gcs-deployment.yaml`
 4. started the "quick run" on prefect deployment, and the local agent started the code but it has downloaded
 the code form githhub and ran the whole flow and uploaded the parquet to the GCP bucket.
+
+
+----------------------------------------------------------------------------------
+
+Question 5. Email or Slack notifications
+
 

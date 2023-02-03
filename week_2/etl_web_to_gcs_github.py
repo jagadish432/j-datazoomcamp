@@ -46,8 +46,8 @@ def write_gcs(path: Path) -> None:
 def etl_web_to_gcs() -> None:
     """The main ETL function: transfers data from external source to the Google Cloud Platform storage"""
     color = "green"
-    year = 2020
-    month = 11
+    year = 2019 #2020
+    month = 4 #11
     dataset_file = f"{color}_tripdata_{year}-{month:02}" # month:02 here means , keep month value in 2 digits i.e., 11 will be 11 but 3 will be 03
     dataset_url = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/{color}/{dataset_file}.csv.gz"
 
