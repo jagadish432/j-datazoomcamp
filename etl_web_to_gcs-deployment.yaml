@@ -4,7 +4,7 @@
 name: etl_github
 description: 'The main ETL function: transfers data from external source to the Google
   Cloud Platform storage'
-version: 99548b27464536f98668b682f586f648
+version: c99a1929237ec428be95b48b3616d47d
 # The work queue that will handle this deployment's runs
 work_queue_name: default
 tags: []
@@ -31,7 +31,7 @@ storage:
   repository: https://github.com/jagadish432/j-datazoomcamp
   reference: master
   access_token: '**********'
-  _block_document_id: 16ab6ef5-0f15-4578-a471-d5861992331c
+  _block_document_id: e2c0dfa1-6cae-4da0-ac09-0cb8ff6d8f6f
   _block_document_name: github
   _is_anonymous: false
   block_type_slug: github
