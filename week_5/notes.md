@@ -42,3 +42,18 @@ are Eager
 2. Write
 
 
+### SPARK internals
+#### spark cluster
+0. spark driver is where we run the spark to submit our job/task
+1. when we submit a job to spark cluster, the master gets the job and assigns sub-tasks/sub-jobs to its executors
+2. each executor would pull the required data from the dataframe(df)
+3. this df could reside in AWs S3/GCP bucket/Hadoop HDFS/etc..
+4. the DF would have internal prtitions, although the each partition would be some individual parquet file
+5. each executor will pull the respective partition from the df 
+6. the idea with HDFS is instead of pulling data into machine, it'll pull the code into the machine which has the data. because code size is always << than the data size
+7. But these days with the addition of cloud providers, the bucket and the machine would be in the same data centers so downloading 100mb data is nothing but some milliseconds matter
+8. once each executor get their results, spark re-shuffle the outputs by like parition based on the result set , it resuffle the resut sets using external merge sort
+
+
+#### Joins
+1. in case of joining large table with a small table, the small table gets broadcasted to every executor so that we dont need to reshuffle, it's much faster
