@@ -26,3 +26,19 @@
 3. for macos - https://github.com/DataTalksClub/data-engineering-zoomcamp/blob/main/week_5_batch_processing/setup/macos.md
 
 
+
+### Actions vs Transformations
+#### Transformations:
+are Lazy(not executed immediately)
+1. Selecting columns
+2. Filtering
+3. Joins
+4. Groupby
+
+
+#### Actions:
+are Eager
+1. Show, take, head
+2. Write
+
+

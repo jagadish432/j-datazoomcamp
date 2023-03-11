@@ -3,3 +3,10 @@ data/*
 week_3/data_fhv/*
 week_4/green*
 week_4/yellow*
+week_5/notebooks/fhvhv/
+week_5/notebooks/fhvhv_tripdata_2021-01.parquet
+week_5/notebooks/fhvhv_tripdata_2022-01.parquet
+week_5/notebooks/zones/
+week_5/notebooks/head.csv
+week_5/notebooks/head.parquet
+week_5/notebooks/taxi+_zone_lookup.csv
