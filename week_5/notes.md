@@ -64,4 +64,15 @@ are Eager
 1. upload all parquet files form gcp compute machine(local) to the GCS bucket ` gsutil -m cp -r pq/ gs://dtc_data_lake_datazoomcamp-375017/pq`. -m is for multithread/processing, -r is for recursive, copying from local pq/ folder to the GCS bucket new `pq` folder
 2. copy the gcloud connector hadoop library from gcloud onto the local directory `gsutil cp gs://hadoop-lib/gcs/gcs-connector-hadoop3-2.2.5.jar lib/gcs-connector-hadoop3-2.2.5.jar` in order for us to be able to load data from files stored in the GCS bucket
 3. to kill the spark context "kill `lsof -t -i:4040`"
-4. 
+
+### Creating a local spark cluster
+1. if we want to shutdown the sessions created by the code present/running in the jupyter notebook, go to the jupyter notebook local URL home page and select `Running` and kill the required session/file running.
+2. go to the spark home directory i.e., `echo $SPARK_HOME`
+3. now, run `./sbin/start-master.sh` to start spark master in our local, and check localhost:8080/ in browser
+4. copy the URL shown on the above 8080 page, and use it to create the spark session.
+5. now, run `./sbin/start-worker.sh <master-spark-URL>` eg: `./sbin/start-worker.sh spark://de-zoomcap.asia-south1-c.c.datazoomcamp-375017.internal:7077` to start a worker/slave for a master to take/execute the jobs
+6. validate the a new worker is added to a master by checking `http://localhost:8080/`
+7. we can execute any lines of code in jupyter notebook, as we're using the same sparksession all will be executed by the worker
+8. we can turn a jupyter notebook into a python script - `jupyter nbconvert --to=script spark-local-cluster.ipynb`
+9. now run the python script `python spark-local-cluster.py`
+
