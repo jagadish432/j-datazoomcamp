@@ -57,3 +57,11 @@ are Eager
 
 #### Joins
 1. in case of joining large table with a small table, the small table gets broadcasted to every executor so that we dont need to reshuffle, it's much faster
+
+
+### spark-gcloud connection
+0. make sure you logged in already using `gcloud auth login`
+1. upload all parquet files form gcp compute machine(local) to the GCS bucket ` gsutil -m cp -r pq/ gs://dtc_data_lake_datazoomcamp-375017/pq`. -m is for multithread/processing, -r is for recursive, copying from local pq/ folder to the GCS bucket new `pq` folder
+2. copy the gcloud connector hadoop library from gcloud onto the local directory `gsutil cp gs://hadoop-lib/gcs/gcs-connector-hadoop3-2.2.5.jar lib/gcs-connector-hadoop3-2.2.5.jar` in order for us to be able to load data from files stored in the GCS bucket
+3. to kill the spark context "kill `lsof -t -i:4040`"
+4. 
