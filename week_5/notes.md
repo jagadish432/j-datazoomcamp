@@ -97,4 +97,5 @@ are Eager
     b. using the REST API
     c. using gcloud cli
 8. for the spark-submit commands, please refer [this file](./spark-submit-commands.md)
-9. 
+9. for saving into bigquery table - we need jars support, and also we need to use some temporary bucket using the temp bucket which is created when cluster gets created.
+10. the jars, temp bucket mentioned in the step #9 is specified clearly in the `spark-save-results-to-bigquery.py` file
