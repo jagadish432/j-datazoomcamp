@@ -75,4 +75,12 @@ are Eager
 7. we can execute any lines of code in jupyter notebook, as we're using the same sparksession all will be executed by the worker
 8. we can turn a jupyter notebook into a python script - `jupyter nbconvert --to=script spark-local-cluster.ipynb`
 9. now run the python script `python spark-local-cluster.py`
+10. now, format the python script i.e.,
+    a. all imports at top
+    b. remove unecessary comments
+    c. use argparser to parse the cli arguments 
+11. If we try to create another worker from local, it throws this error `org.apache.spark.deploy.worker.Worker running as process 5730.  Stop it first.`
+12. you can also stop the worker by running `./sbin/stop-worker.sh`
+13. with arguments passing, we can call our python script like this -> `python spark-local-cluster.py --input_green=data/pq/green/2020/* --input_yellow=data/pq/yellow/2020/* --output=data/report/revenue-2020`
+14. In this course we worked with the single cluster and single worker, but in reality we would work with MULTIPLE CLUSTER setup and definitely with multiple workers/executors as well.
 

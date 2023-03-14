@@ -5,51 +5,35 @@
 
 
 import pyspark
+import argparse
 from pyspark.sql import SparkSession
+from pyspark.sql import functions as F
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument('--input_green', required=True)
+parser.add_argument('--input_yellow', required=True)
+parser.add_argument('--output', required=True)
+
+args = parser.parse_args()
+input_green = args.input_green
+input_yellow = args.input_yellow
+output = args.output
 
 spark = SparkSession.builder.master("spark://de-zoomcap.asia-south1-c.c.datazoomcamp-375017.internal:7077").appName('local_cluster').getOrCreate()
 
 
-# In[2]:
+df_green = spark.read.parquet(input_green)
+df_yellow = spark.read.parquet(input_yellow) 
 
 
-spark
 
-
-# In[3]:
-
-
-df_green = spark.read.parquet('./data/pq/green/*/*')
-
-
-# In[4]:
-
-
-df_yellow = spark.read.parquet('data/pq/yellow/*/*') 
-
-
-# In[5]:
-
-
-df_green = df_green.withColumnRenamed('lpep_pickup_datetime', 'pickup_datetime')                 .withColumnRenamed('lpep_dropoff_datetime', 'dropoff_datetime')
-
-df_yellow = df_yellow.withColumnRenamed('tpep_pickup_datetime', 'pickup_datetime')                 .withColumnRenamed('tpep_dropoff_datetime', 'dropoff_datetime')
-
-
-# In[6]:
+df_green = df_green.withColumnRenamed('lpep_pickup_datetime', 'pickup_datetime').withColumnRenamed('lpep_dropoff_datetime', 'dropoff_datetime')
+df_yellow = df_yellow.withColumnRenamed('tpep_pickup_datetime', 'pickup_datetime').withColumnRenamed('tpep_dropoff_datetime', 'dropoff_datetime')
 
 
 set(df_green.columns) & set(df_yellow.columns)
-
-
-# In[7]:
-
-
 set(df_green.columns) - set(df_yellow.columns)
-
-
-# In[8]:
-
 
 common_cols = []
 
@@ -57,47 +41,16 @@ for col in df_yellow.columns:
     if col in df_green.columns:
         common_cols.append(col)
 
-
-# In[9]:
-
-
 common_cols
 
 
-# In[10]:
-
-
-from pyspark.sql import functions as F
-
-
-# In[11]:
-
-
-df_green_sel = df_green.select(common_cols)     .withColumn('service_type', F.lit('green'))
-
-df_yellow_sel = df_yellow.select(common_cols)     .withColumn('service_type', F.lit('yellow'))
-
-
-# In[13]:
+df_green_sel = df_green.select(common_cols).withColumn('service_type', F.lit('green'))
+df_yellow_sel = df_yellow.select(common_cols).withColumn('service_type', F.lit('yellow'))
 
 
 df_trips_data = df_green_sel.unionAll(df_yellow_sel)
-
-
-# In[14]:
-
-
 df_trips_data.groupBy('service_type').count().show()
-
-
-# In[15]:
-
-
 df_trips_data.registerTempTable('trips_data')
-
-
-# In[16]:
-
 
 df_result = spark.sql("""
 SELECT 
@@ -128,8 +81,4 @@ GROUP BY 1,2,3
 """)
 
 
-# In[ ]:
-
-
-df_result.coalesce(1).write.parquet('data/report/revenue', mode='overwrite')
-
+df_result.coalesce(1).write.parquet(output, mode='overwrite')
