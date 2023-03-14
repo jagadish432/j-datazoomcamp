@@ -84,3 +84,17 @@ are Eager
 13. with arguments passing, we can call our python script like this -> `python spark-local-cluster.py --input_green=data/pq/green/2020/* --input_yellow=data/pq/yellow/2020/* --output=data/report/revenue-2020`
 14. In this course we worked with the single cluster and single worker, but in reality we would work with MULTIPLE CLUSTER setup and definitely with multiple workers/executors as well.
 
+
+### Setting up a Dataproc cluster
+1. `Dataproc` may be they meant this for data processing
+2. create a dataproc cluster - either with VMs or GKE
+3. select either the 1 master N workers/ 1 master 1 worker/ 3 masters N workers based on the usage type
+4. create the cluster in the same region as of our gcp bucket
+5. upload the python file in the bucket itself so that the dataproc clusters/nodes can be able to access the code and execute them , eg: `gsutil cp spark-dataproc-cluster.py gs://dtc_data_lake_datazoomcamp-375017/code/`
+6. we can submit a pyspark job, by selecting type of the job, python file path and the required args and click on submit
+7. also, we can submit a pyspark job using 3 ways
+    a. from GCP web UI
+    b. using the REST API
+    c. using gcloud cli
+8. for the spark-submit commands, please refer [this file](./spark-submit-commands.md)
+9. 
