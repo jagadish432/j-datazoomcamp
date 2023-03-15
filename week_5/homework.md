@@ -29,3 +29,25 @@ Consider only trips that started on June 15.
 452470
 
 
+## 4 Longest trip for each day
+
+Now calculate the duration for each trip.
+How long was the longest trip in Hours?
+
+### Answer:
+
+
+## 5 User Interface
+
+Spark’s User Interface which shows application's dashboard runs on which local port?
+
+### Answer: 4040
+
+
+## 6 Most frequent pickup location zone
+
+Load the zone lookup data into a temp view in Spark
+Zone Data
+
+### Answer: 
+Crown Heights North
