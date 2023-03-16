@@ -35,7 +35,7 @@ Now calculate the duration for each trip.
 How long was the longest trip in Hours?
 
 ### Answer:
-
+66.87 Hours
 
 ## 5 User Interface
 
